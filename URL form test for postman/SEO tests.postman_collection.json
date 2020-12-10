@@ -1,0 +1,633 @@
+{
+	"info": {
+		"_postman_id": "2c704c8a-fadc-42c2-86ad-85e36163f7e2",
+		"name": "SEO tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Main Page URL Feield Tests",
+			"item": [
+				{
+					"name": "main page",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1be12427-a3f9-474a-bdd3-f99fb013aaeb",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.iwebtool.com",
+							"protocol": "https",
+							"host": [
+								"www",
+								"iwebtool",
+								"com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "API_mane_page_urlfield_positive",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "link",
+									"value": "{{urlpositive}}",
+									"type": "text"
+								},
+								{
+									"key": "page",
+									"value": "/",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "https://www.iwebtool.com/api/get_main_report",
+							"protocol": "https",
+							"host": [
+								"www",
+								"iwebtool",
+								"com"
+							],
+							"path": [
+								"api",
+								"get_main_report"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "API_main_page_urlfield_negative",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "link",
+									"value": "{{urlnegative}}",
+									"type": "text"
+								},
+								{
+									"key": "page",
+									"value": "/",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "https://www.iwebtool.com/api/get_main_report",
+							"protocol": "https",
+							"host": [
+								"www",
+								"iwebtool",
+								"com"
+							],
+							"path": [
+								"api",
+								"get_main_report"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Backlink Checker",
+			"item": [
+				{
+					"name": "Back link checker",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b5664a7-04d9-4716-93d8-1389589bf803",
+								"exec": [
+									"pm.test(\"В строке ответа содержится фраза\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Total number of issues\");\r",
+									"});\r",
+									"pm.test(\"В строке ответа нет progres:0\", function () {\r",
+									"    pm.expect(pm.response.text()).to.not.include('{\"progress\":0}');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "session",
+									"value": "30b59855672199ff07d1077ffb230985",
+									"description": "newstom76.ru",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://www.iwebtool.com/api/get_broken_backlinks_progress",
+							"protocol": "https",
+							"host": [
+								"www",
+								"iwebtool",
+								"com"
+							],
+							"path": [
+								"api",
+								"get_broken_backlinks_progress"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Meta Tags Extractor",
+			"item": [
+				{
+					"name": "Meta Tags Extractor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e8bc6080-c8dc-40ea-b414-7108096131f6",
+								"exec": [
+									"pm.test(\"В ответе не содержится фразы ниже\", function () {\r",
+									"    pm.expect(pm.response.text()).to.not.include(\"Unfortunately, we don't have Google Search results for this keyword. Please try to use another keyword. Thank you!\");\r",
+									"});\r",
+									"pm.test(\"В ответе содержится фраза\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Description\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "phrase",
+									"value": "dental pain",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "https://www.iwebtool.com/api/get_meta_scrapper",
+							"protocol": "https",
+							"host": [
+								"www",
+								"iwebtool",
+								"com"
+							],
+							"path": [
+								"api",
+								"get_meta_scrapper"
+							]
+						},
+						"description": "добавить тест, о том, что на странице есть текст \"URL\""
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "TOP Organic Keywords",
+			"item": [
+				{
+					"name": "API_TOP_Organic_Keywords_positive",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "domain",
+									"value": "{{urlpositive}}",
+									"type": "text"
+								},
+								{
+									"key": "previous_report_date",
+									"value": "",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "https://www.iwebtool.com/api/get_keywords",
+							"protocol": "https",
+							"host": [
+								"www",
+								"iwebtool",
+								"com"
+							],
+							"path": [
+								"api",
+								"get_keywords"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "URL Cache Checker",
+			"item": [
+				{
+					"name": "API_URL_Cache_Checker_positive",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8581381d-433b-40d4-8fdc-e58239b2209f",
+								"exec": [
+									"pm.test(\"В ответе не содержится фразы ниже\", function () {\r",
+									"    pm.expect(pm.response.text()).to.not.include(\"Unfortunately, we don't have Google Search results for this keyword. Please try to use another keyword. Thank you!\");\r",
+									"});\r",
+									"pm.test(\"В ответе содержится фраза\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Description\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "url",
+									"value": "https://newstom76.ru/",
+									"type": "text"
+								},
+								{
+									"key": "report_type",
+									"value": "LARGE",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "https://www.iwebtool.com/api/check_url_caching_status",
+							"protocol": "https",
+							"host": [
+								"www",
+								"iwebtool",
+								"com"
+							],
+							"path": [
+								"api",
+								"check_url_caching_status"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Link Extractor",
+			"item": [
+				{
+					"name": "Link Extractor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "link",
+									"value": "{{urlpositive}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://www.iwebtool.com/api/get_page_links",
+							"protocol": "https",
+							"host": [
+								"www",
+								"iwebtool",
+								"com"
+							],
+							"path": [
+								"api",
+								"get_page_links"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Pages Checker",
+			"item": [
+				{
+					"name": "Pages Checker",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "session",
+									"value": "fefaa90d84e40eebca1854a5d78b84c8",
+									"description": "https://newstom76.ru/",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://www.iwebtool.com/api/get_page_errors_progress",
+							"protocol": "https",
+							"host": [
+								"www",
+								"iwebtool",
+								"com"
+							],
+							"path": [
+								"api",
+								"get_page_errors_progress"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Backlinks",
+			"item": [
+				{
+					"name": "Backlinks",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "domain",
+									"value": "{{urlpositive}}",
+									"type": "text"
+								},
+								{
+									"key": "page",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://www.iwebtool.com/api/get_backlinks",
+							"protocol": "https",
+							"host": [
+								"www",
+								"iwebtool",
+								"com"
+							],
+							"path": [
+								"api",
+								"get_backlinks"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Page Speed Test",
+			"item": [
+				{
+					"name": "Page Speed Test",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "session",
+									"value": "00607dc152f9f00f691d53104ae08b07",
+									"description": "newstom76.ru",
+									"type": "text"
+								},
+								{
+									"key": "widget_type",
+									"value": "large",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://www.iwebtool.com/api/get_page_speed_status",
+							"protocol": "https",
+							"host": [
+								"www",
+								"iwebtool",
+								"com"
+							],
+							"path": [
+								"api",
+								"get_page_speed_status"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Visual Page Rank",
+			"item": [
+				{
+					"name": "Visual Page Rank",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "url",
+									"value": "{{urlpositive}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://www.iwebtool.com/api/get_internal_pagerank",
+							"protocol": "https",
+							"host": [
+								"www",
+								"iwebtool",
+								"com"
+							],
+							"path": [
+								"api",
+								"get_internal_pagerank"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Link Popularity",
+			"item": [
+				{
+					"name": "Link Popularity",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "link",
+									"value": "{{urlpositive}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://www.iwebtool.com/api/get_link_popularity",
+							"protocol": "https",
+							"host": [
+								"www",
+								"iwebtool",
+								"com"
+							],
+							"path": [
+								"api",
+								"get_link_popularity"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ccff0733-7716-4551-8d00-69d5167ad4c9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "35d88f9c-fcd2-4214-8dea-c6b6a2c2e8be",
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "da388ff0-1c4c-4ceb-b42c-ceabf0f78d64",
+			"key": "site",
+			"value": ""
+		},
+		{
+			"id": "93faf611-6368-4bf4-8300-5be0220a7d47",
+			"key": "urlpositive",
+			"value": ""
+		},
+		{
+			"id": "cb8ac90f-1489-4a7c-9263-9fdd97c9cadd",
+			"key": "urlnegative",
+			"value": ""
+		}
+	],
+	"protocolProfileBehavior": {}
+}
